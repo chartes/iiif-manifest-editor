@@ -9,7 +9,7 @@ var SendManifestToUri = require('SendManifestToUri');
 var SaveManifestDialog = React.createClass({
   getInitialState: function() {
     return {
-      saveManifestLocation: 'local',
+      saveManifestLocation: 'remote',
       saveManifestDialogId: undefined
     };
   },

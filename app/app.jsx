@@ -25,10 +25,12 @@ ReactDOM.render(
     <Router history={hashHistory}>
       <Route path="/" component={Main}>
         <Route path="open" component={OpenManifest} />
+        {/*
         <Route path="new" component={NewManifest} />
+        */}
         <Route path="edit" component={EditManifest} />
         <Route path="canvases" component={ImportCanvases} />
-        <IndexRoute component={Home}/>
+        <IndexRoute component={OpenManifest}/>
       </Route>
     </Router>
   </Provider>,

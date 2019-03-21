@@ -6,7 +6,11 @@ var actions = require('actions');
 
 var SendManifestToUri = React.createClass({
   getInitialState: function() {
-    var savedServerEndpoint = (localStorage && localStorage.getItem('savedServerEndpoint')) ? JSON.parse(localStorage.getItem('savedServerEndpoint')) : '';
+    //var savedServerEndpoint = (localStorage && localStorage.getItem('savedServerEndpoint')) ? JSON.parse(localStorage.getItem('savedServerEndpoint')) : '';
+    var savedServerEndpoint = {
+      serverEndpointName: 'default',
+      serverEndpointUri: document.getElementById('app').getAttribute('data-remote-endpoint-uri')
+    };
     return {
       isSendingManifest: false,
       serverResponse: undefined,
@@ -15,7 +19,11 @@ var SendManifestToUri = React.createClass({
     };
   },
   componentWillReceiveProps: function(nextProps) {
-    var savedServerEndpoint = (localStorage && localStorage.getItem('savedServerEndpoint')) ? JSON.parse(localStorage.getItem('savedServerEndpoint')) : '';
+    //var savedServerEndpoint = (localStorage && localStorage.getItem('savedServerEndpoint')) ? JSON.parse(localStorage.getItem('savedServerEndpoint')) : '';
+    var savedServerEndpoint = {
+      serverEndpointName: 'default',
+      serverEndpointUri: document.getElementById('app').getAttribute('data-remote-endpoint-uri')
+    };
     this.setState({
       savedServerEndpoint: savedServerEndpoint,
       serverResponse: undefined

@@ -118,6 +118,13 @@ var OpenManifest = React.createClass({
     var $discoverManifestsDialog = $(ReactDOM.findDOMNode(this.refs.discoverManifestsDialog));
     $discoverManifestsDialog.modal('hide');
   },
+
+  componentDidMount: function() {
+    var manifestUri = document.getElementById('app').getAttribute("data-manifest-uri");
+    console.log("component did mount !", manifestUri);
+    this.fetchRemoteManifest(manifestUri);
+  },
+
   render: function() {
     return(
       <div className="container open-manifest-container">
