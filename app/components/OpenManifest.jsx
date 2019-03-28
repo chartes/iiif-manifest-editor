@@ -34,6 +34,7 @@ var OpenManifest = React.createClass({
   fetchRemoteManifest: function(remoteManifestUrl) {
     var {dispatch} = this.props;
     dispatch(actions.startManifestFetch('MANIFEST_TYPE_REMOTE'));
+    const fetch = this.fetchRemoteManifest;
     axios.get(remoteManifestUrl)
       .then(function(response) {
         dispatch(actions.setManifestoObject(manifesto.create(JSON.stringify(response.data))));
@@ -42,8 +43,14 @@ var OpenManifest = React.createClass({
         window.location = '#/edit';  // redirect to edit manifest on success
       })
       .catch(function(error) {
-        dispatch(actions.setError('FETCH_REMOTE_MANIFEST_ERROR', 'Error loading remote manifest. Please provide a valid manifest URL.'));
-        dispatch(actions.completeManifestFetch());
+        const templateManifestUri = document.getElementById('app').getAttribute("data-template-manifest-uri");
+        //console.warn("fetch remote manifest error ! ", error, templateManifestUri);
+        if (templateManifestUri !== remoteManifestUrl) {
+          fetch(templateManifestUri);
+        } else {
+          dispatch(actions.setError('FETCH_REMOTE_MANIFEST_ERROR', 'Error loading remote manifest. Please provide a valid manifest URL.'));
+          dispatch(actions.completeManifestFetch());
+        }
       });
   },
   getUrlParameterByName: function(name, url) {
@@ -121,7 +128,6 @@ var OpenManifest = React.createClass({
 
   componentDidMount: function() {
     var manifestUri = document.getElementById('app').getAttribute("data-manifest-uri");
-    console.log("component did mount !", manifestUri);
     this.fetchRemoteManifest(manifestUri);
   },
 

@@ -98,11 +98,13 @@ var SendManifestToUri = React.createClass({
             <div className="alert alert-success">
               <div><i className="fa fa-check-circle"></i> Manifest successfully sent and stored!</div>
             </div>
+            {/*
             <div>
               <p>You may reference your remotely stored manifest from the following URI: <br />
               <a target="_blank" href={this.state.remoteManifestUri}>{this.state.remoteManifestUri}</a>
               </p>
             </div>
+            */}
           </div>
         );
       } else {
